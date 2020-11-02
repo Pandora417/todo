@@ -16,14 +16,14 @@ export default {
   components: {
     Header,
     Footer,
-    Todo,
+    Todo
   },
-  data() {
+  data () {
     return {
-      text: "hello pandora!"
+      text: 'hello pandora!'
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

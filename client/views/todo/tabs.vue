@@ -18,8 +18,8 @@
 
 <script>
 export default {
-  props:{
-    filter:{
+  props: {
+    filter: {
       type: String,
       required: true
     },
@@ -29,20 +29,20 @@ export default {
     }
   },
   computed: {
-    unfinshedTodoLength() {
+    unfinshedTodoLength () {
       return this.todos.filter(todo => !todo.completed).length
     }
   },
-  data() {
+  data () {
     return {
-      states: ['all','active','completed']
+      states: ['all', 'active', 'completed']
     }
   },
-  methods:{
-    toggleFilter(state){
+  methods: {
+    toggleFilter (state) {
       this.$emit('toggle', state)
     },
-    clearAllCompleted(){
+    clearAllCompleted () {
       this.$emit('clearAll')
     }
   }
@@ -58,7 +58,7 @@ export default {
   line-height 30px
   background-color #ffffff
   font-size 14px
-  font-smoothing antialiased
+  // font-smoothing antialiased
 .left,
 .clear,
 .tabs
@@ -70,13 +70,13 @@ export default {
 .left
   text-align left
 .clear
-  text-align right 
+  text-align right
   cursor pointer
 .tabs
   width 200px
   display flex
   justify-content space-around
-  * 
+  *
     display inline-block
     padding 0 10px
     cursor pointer
@@ -85,4 +85,3 @@ export default {
       border-color rgba(175, 47, 47, 0.4)
       border-radius 5px
 </style>
-

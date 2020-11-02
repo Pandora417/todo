@@ -1,20 +1,20 @@
 <template>
   <section class="real-app">
-    <input 
+    <input
       type="text"
       class="add-input"
       autofocus="autofocus"
       placeholder="接下来要做的事情?"
       @keyup.enter="addTodo"
     >
-    <item 
+    <item
       :todo="todo"
       v-for="todo in filteredTodos"
       :key = "todo.id"
       @del = "deleteTodo"
     ></item>
-    <tabs 
-      :filter="filter" 
+    <tabs
+      :filter="filter"
       :todos = "todos"
       @toggle = "toggleFilter"
       @clearAll = "clearAllCompleted"
@@ -29,19 +29,19 @@ import Tabs from './tabs.vue'
 let id = 0
 
 export default {
-  data() {
-    return{
-      todos:[],
+  data () {
+    return {
+      todos: [],
       filter: 'all'
     }
   },
-  components:{
+  components: {
     Item,
     Tabs
   },
   computed: {
-    filteredTodos() {
-      if (this.filter === 'all'){
+    filteredTodos () {
+      if (this.filter === 'all') {
         return this.todos
       }
 
@@ -49,25 +49,25 @@ export default {
       return this.todos.filter(todo => completed === todo.completed)
     }
   },
-  methods:{
-    addTodo(e) {
+  methods: {
+    addTodo (e) {
       this.todos.unshift({
         id: id++,
-        content: e.target.value.trim(), //trim去空格
+        content: e.target.value.trim(), // trim去空格
         completed: false
       })
-      e.target.value = ""
+      e.target.value = ''
     },
-    deleteTodo(id){
+    deleteTodo (id) {
       this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
     },
-    toggleFilter(state) {
+    toggleFilter (state) {
       this.filter = state
     },
-    clearAllCompleted() {
+    clearAllCompleted () {
       this.todos = this.todos.filter(todo => !todo.completed)
     }
-    
+
   }
 }
 </script>
@@ -80,10 +80,10 @@ export default {
 }
 .add-input{
   position relative
-  height 70px 
+  height 70px
   width 600px
   font-size 24px
-  padding 0 20px 
+  padding 0 20px
   box-sizing border-box
   border-width 0 0 1px 0
 }

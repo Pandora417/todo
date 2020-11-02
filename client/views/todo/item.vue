@@ -1,6 +1,6 @@
 <template>
   <div :class="['todo-item', todo.completed ? 'completed' : '']">
-    <input 
+    <input
       type="checkbox"
       class="toggle"
       v-model="todo.completed"
@@ -12,14 +12,14 @@
 <script>
 export default {
   props: {
-    todo:{
+    todo: {
       type: Object,
-      require: true,
+      require: true
     }
 
   },
-  methods:{
-    deleteTodo(){
+  methods: {
+    deleteTodo () {
       this.$emit('del', this.todo.id)
     }
   }
