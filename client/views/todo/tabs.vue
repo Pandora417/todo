@@ -1,52 +1,55 @@
 <template>
   <div class="helper">
-    <span class="left"> {{unfinshedTodoLength}} items left</span>
+    <span class="left"> {{ unfinshedTodoLength }} items left</span>
     <span class="tabs">
       <span
         v-for="(state, index, key) in states"
+        :id="index"
         :key="key"
         :class="[state, filter === state ? 'actived':'']"
-        :id = "index"
         @click="toggleFilter(state)"
       >
-        {{state}}
+        {{ state }}
       </span>
     </span>
-    <span class="clear" @click="clearAllCompleted">Clear All Completed</span>
+    <span
+      class="clear"
+      @click="clearAllCompleted"
+    >Clear All Completed</span>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    filter: {
-      type: String,
-      required: true
+    'props': {
+        'filter': {
+            'type': String,
+            'required': true
+        },
+        'todos': {
+            'type': Array,
+            'required': true
+        }
     },
-    todos: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    unfinshedTodoLength () {
-      return this.todos.filter(todo => !todo.completed).length
-    }
-  },
-  data () {
-    return {
-      states: ['all', 'active', 'completed']
-    }
-  },
-  methods: {
-    toggleFilter (state) {
-      this.$emit('toggle', state)
+    data() {
+        return {
+            'states': ['all', 'active', 'completed']
+        };
     },
-    clearAllCompleted () {
-      this.$emit('clearAll')
+    'computed': {
+        unfinshedTodoLength() {
+            return this.todos.filter(todo => !todo.completed).length;
+        }
+    },
+    'methods': {
+        toggleFilter(state) {
+            this.$emit('toggle', state);
+        },
+        clearAllCompleted() {
+            this.$emit('clear-all');
+        }
     }
-  }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
